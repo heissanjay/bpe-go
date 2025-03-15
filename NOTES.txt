@@ -1,0 +1,19 @@
+BPE Algorithm.
+
+1. start with characters as tokens.
+	1. take a list of words in the input sequence
+	2. break each word into individual characters and add a special symbol(_ or </w>) to indicate the word boundaries. e.g., lower -> l, o, w, e, r, _ , low -> 'l', 'o', 'w'
+2. Count how often each adjacent pairs appears.
+	1. look at all words in the sequence and count how often each pair of adjacent tokens appears.
+	2. The most frequent pair is the one we will merge first. e.g., ('l', 'o') -> 2 times
+3. Merge the most frequent pairs.
+	1. pick the most frequent pair
+	2. Replace all occurrences of this pair in the dataset with a new merged token.
+4. Repeat this process for a fixed number of merges
+	1. Count new pairs
+	2. merge most frequent one
+	3. Keep repeating until you reach the desired vocabulary size or run of frequent pairs
+5. store the final merges as vocabulary
+	1. After enough merges, we have a sub word vocabulary that can efficiently tokenize words.
+	2. now, any new word can be broken down into sub words from this vocabulary.
+6. Use the vocabulary to encode new words.
